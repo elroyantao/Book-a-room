@@ -3,7 +3,8 @@ import {
   Container,
   Header,
   Body,
-  Title
+  Title,
+  Content
 } from 'native-base'
 import Meteor, { createContainer } from 'react-native-meteor'
 import Home from '../screens/Home'
@@ -14,8 +15,7 @@ import Login from '../screens/Login'
 import NavMenu from './NavMenu'
 
 try {
-  Meteor.connect('ws://192.168.0.21:3000/websocket')
-  // Meteor.connect('ws://127.0.0.1:3000/websocket')
+  Meteor.connect('ws://soymqkomhb.localtunnel.me/websocket')
   console.log('SUCCESS')
 } catch (e) {
   console.log('ERROR', e)
