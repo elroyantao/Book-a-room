@@ -13,23 +13,23 @@ export default class MeetingList extends Component {
     const { meeting } = this.props
     console.log(meeting.date)
     return (
-          <List style={style.list}>
-            <ListItem avatar>
-              <Left>
-                { meeting.room === 1 && <Thumbnail source={room1} square /> }
-                { meeting.room === 2 && <Thumbnail source={room2} square /> }
-                { meeting.room === 3 && <Thumbnail source={room3} square /> }
-              </Left>
-              <Body>
-              <Text note>Room {meeting.room} - Floor {meeting.floor}</Text>
-              <Text>{meeting.description}</Text>
-              <Text note>{convertTimeSlotsToTime(meeting.timeslots)} </Text>
-              </Body>
-              <Right>
-                <Text note>({meeting.location})</Text>
-              </Right>
-            </ListItem>
-          </List>
+      <List style={style.list}>
+        <ListItem avatar>
+          <Left>
+            { meeting.room === 1 && <Thumbnail source={room1} square /> }
+            { meeting.room === 2 && <Thumbnail source={room2} square /> }
+            { meeting.room === 3 && <Thumbnail source={room3} square /> }
+          </Left>
+          <Body>
+          <Text note>Room {meeting.room} - Floor {meeting.floor}</Text>
+          <Text>{meeting.description}</Text>
+          <Text note>{convertTimeSlotsToTime(meeting.timeslots)} </Text>
+          </Body>
+          <Right>
+            <Text note>({meeting.location})</Text>
+          </Right>
+        </ListItem>
+      </List>
     )
   }
 }
