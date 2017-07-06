@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+  Content,
   Container,
   Header,
   Body,
