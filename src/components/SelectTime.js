@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Content, Picker, Form, Text, List, ListItem, H2, Button } from 'native-base'
+import { Container, Picker, Text, H2, Button } from 'native-base'
 import Meteor, { createContainer } from 'react-native-meteor'
 //
 const Item = Picker.Item
@@ -70,11 +70,9 @@ class SelectTime extends Component {
           selectedValue={this.state.startTime}
           onValueChange={this.onStartTimeChange.bind(this)}
         >
-          {timeList.map((time, index) => {
-            return (
-              <Item label={time} value={index} key={index}/>
-            )
-          })}
+          {timeList.map((time, index) => (
+              <Item label={time} value={index} key={index} />
+            ))}
         </Picker>
         <Text>Select your meeting time</Text>
         <Picker
@@ -83,11 +81,9 @@ class SelectTime extends Component {
           selectedValue={this.state.duration}
           onValueChange={this.onDurationChange.bind(this)}
         >
-          {duration.map((dur, index) => {
-            return (
-              <Item label={dur} value={index} key={index}/>
-            )
-          })}
+          {duration.map((dur, index) => (
+              <Item label={dur} value={index} key={index} />
+            ))}
         </Picker>
         <Button block primary onPress={this.onSubmit}>
           <Text> Book room </Text>
@@ -98,7 +94,7 @@ class SelectTime extends Component {
 }
 
 export default createContainer(({ date }) => {
-  const subhandler =  Meteor.subscribe('dayMeetings', date)
+  const subhandler = Meteor.subscribe('dayMeetings', date)
   return {
     meetingsReady: subhandler.ready(),
     meetings: Meteor.collection('meetings').find()
