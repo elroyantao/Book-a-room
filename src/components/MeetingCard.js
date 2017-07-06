@@ -37,7 +37,7 @@ export default class MeetingCard extends Component {
 
 const style = {
   room: {
-    height: 100,
+    height: 80,
     width: null,
     flex: 1
   }
