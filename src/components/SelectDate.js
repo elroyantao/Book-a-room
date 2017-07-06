@@ -36,7 +36,6 @@ export default class SelectDate extends Component {
   }
 
   render() {
-    console.log(this.state.myDays)
     return (
       <Container>
         <H2>Select Day</H2>

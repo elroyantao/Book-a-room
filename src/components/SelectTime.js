@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Content, Picker, Form, Text, List, ListItem, H2, Button } from 'native-base'
-// import Meteor, { createContainer } from 'react-native-meteor'
+import Meteor, { createContainer } from 'react-native-meteor'
 //
 const Item = Picker.Item
 const timeList = [
@@ -29,10 +29,9 @@ const duration = [
   '2.5 hours'
 ]
 
-export default class SelectTime extends Component {
+class SelectTime extends Component {
   constructor(props) {
     super(props)
-    console.log(props)
     this.state = {
       startTime: 1,
       duration: 1
@@ -56,6 +55,7 @@ export default class SelectTime extends Component {
   }
 
   render() {
+    console.log(this.props.meetings)
     return (
       <Container>
         <H2>Select Room</H2>
@@ -92,3 +92,11 @@ export default class SelectTime extends Component {
     )
   }
 }
+
+export default createContainer(({ date }) => {
+  const subhandler =  Meteor.subscribe('dayMeetings', date)
+  return {
+    meetingsReady: subhandler.ready(),
+    meetings: Meteor.collection('meetings').find()
+  }
+}, SelectTime)

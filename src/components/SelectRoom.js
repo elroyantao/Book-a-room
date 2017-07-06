@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
 import { Text, Container, List, ListItem, H2, Left, Body } from 'native-base'
 
-const allFloors = [1, 2, 3, 4, 5, 6, 7]
+const allRooms = [1, 2, 3]
 
-export default class SelectFloor extends Component {
+export default class SelectRoom extends Component {
   constructor(props) {
     super(props)
-    console.log(props)
   }
 
-  handleFloorSelect = (floor) => {
-    this.props.onSelectFloor(floor)
+  handleRoomSelect = (room) => {
+    this.props.onSelectRoom(room)
   }
 
   render() {
     return (
       <Container>
-        <H2>Select Floor</H2>
+        <H2>Select Room</H2>
         <List>
-          {allFloors.map((floor) => {
+          {allRooms.map((room) => {
             return (
               <ListItem
-                onPress={() => this.handleFloorSelect(floor)}
-                key={floor}
+                onPress={() => this.handleRoomSelect(room)}
+                key={room}
               >
-                  <Text>Floor: {floor}</Text>
+                  <Text>Room: {room}</Text>
               </ListItem>
             )
           })}

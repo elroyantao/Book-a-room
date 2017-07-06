@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Text, Container, List, ListItem, H2, Left, Body } from 'native-base'
+import { Text, Container, List, ListItem, H2, Left, Body, Toast } from 'native-base'
 import Meteor, { createContainer } from 'react-native-meteor'
-import SelectDate from './SelectDate'
-import SelectFloor from './SelectFloor'
-import SelectRoom from './SelectRoom'
-import SelectTime from './SelectTime'
+import SelectDate from '../components/SelectDate'
+import SelectFloor from '../components/SelectFloor'
+import SelectRoom from '../components/SelectRoom'
+import SelectTime from '../components/SelectTime'
 
 export default class BookARoom extends Component {
   constructor(props) {
@@ -14,12 +14,12 @@ export default class BookARoom extends Component {
       floor: null,
       room: null,
       date: null,
-      timeslot: []
+      timeslots: [],
+      description: 'hackathon showcase'
     }
   }
 
   handleSelectDate = (date) => {
-    console.log(date)
     this.setState({
       date
     })
@@ -37,14 +37,33 @@ export default class BookARoom extends Component {
     })
   }
 
-  handleTimeSlot = (timeslot) => {
+  handleTimeSlot = (timeslots) => {
     this.setState({
-      timeslot
-    })
+      timeslots: [timeslots]
+    }, this.bookMyRoom)
+  }
+
+  bookMyRoom = () => {
+    const { location, date, timeslots, room, floor, description } = this.state
+    console.log( location, date, timeslots, room, floor, description )
+    Meteor.call('addMeeting', {
+      location, date, timeslots, room, floor, description
+    }, this.onCreateBooking)
+  }
+
+  onCreateBooking = (error, success) => {
+    if (error) {
+      return Toast.show({
+        text: 'Sorry uncessfull',
+        position: 'bottom',
+        buttonText: 'Okay'
+      })
+    }
+    this.props.onFinished('agenda')
   }
 
   render() {
-    const { location, floor, room, date, timeslot } = this.state
+    const { location, floor, room, date, timeslots } = this.state
     if (!location) {
       return (
         <Container>
@@ -67,7 +86,7 @@ export default class BookARoom extends Component {
         <SelectRoom onSelectRoom={this.handleRoomSelect} />
       )
     }
-    if (!timeslot || !timeslot.length) {
+    if (!timeslots || !timeslots.length) {
       return (
         <SelectTime
           location={location}
@@ -78,5 +97,6 @@ export default class BookARoom extends Component {
         />
       )
     }
+    return <Text> done</Text>
   }
 }

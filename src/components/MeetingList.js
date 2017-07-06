@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base'
+import { convertTimeSlotsToTime } from '../util/timeHelper'
 
 const room1 = require('../../assets/room1.jpg')
 const room2 = require('../../assets/room2.jpg')
@@ -21,6 +22,7 @@ export default class MeetingList extends Component {
               <Body>
               <Text>Room {meeting.room} - Floor {meeting.floor} ({meeting.location})</Text>
               <Text note>{meeting.description}</Text>
+              <Text>{convertTimeSlotsToTime(meeting.timeslots)} </Text>
               </Body>
               <Right>
                 <Text note>{new Date(meeting.date).getDate()}</Text>

@@ -48,6 +48,12 @@ class App extends Component {
     })
   }
 
+  routeToScreen = (activeScreen) => {
+    this.setState({
+      activeScreen
+    })
+  }
+
   routeTo = (activeScreen) => {
     switch (activeScreen) {
       case 'login':
@@ -55,7 +61,7 @@ class App extends Component {
       case 'home':
         return <Home />
       case 'book':
-        return <BookARoom />
+        return <BookARoom onFinished={this.routeToScreen} />
       case 'agenda':
         return <Agenda />
       case 'settings':
