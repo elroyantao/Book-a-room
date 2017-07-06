@@ -9,9 +9,7 @@ class Agenda extends Component {
     return (
       <Container>
         { !this.props.meetingsReady && <Spinner /> }
-        <Content>
           { this.props.meetingsReady && this.props.meetings.map((value) => <MeetingList key={ value._id } meeting={value} />)}
-        </Content>
       </Container>
     )
   }
