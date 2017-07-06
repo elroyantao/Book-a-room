@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import { Text } from 'native-base'
+import { Container, Thumbnail, Text } from 'native-base'
 
 export default class Home extends Component {
   render() {
     return (
-      <Text>Home Page!</Text>
+      <Container>
+        <Thumbnail source={require('../../assets/user_circle.png')} />
+        <Text>Hi Jack!</Text>
+      </Container>
     )
   }
 }
