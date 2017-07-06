@@ -62,6 +62,13 @@ export default class BookARoom extends Component {
     this.props.onFinished('agenda', 'My Meetings')
   }
 
+  clearRoomSelection = () => {
+    this.setState({
+      floor: null,
+      room: null
+    })
+  }
+
   render() {
     const { location, floor, room, date, timeslots } = this.state
     if (!location) {
@@ -94,6 +101,7 @@ export default class BookARoom extends Component {
           floor={floor}
           room={room}
           selectTimeslot={this.handleTimeSlot}
+          goBack={this.clearRoomSelection}
         />
       )
     }
