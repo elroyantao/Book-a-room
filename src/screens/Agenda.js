@@ -6,7 +6,6 @@ import MeetingList from '../components/MeetingList'
 
 class Agenda extends Component {
   render() {
-    console.log(this.props)
     return (
       <Container>
         { !this.props.meetingsReady && <Spinner /> }
