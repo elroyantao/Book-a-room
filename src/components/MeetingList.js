@@ -7,7 +7,6 @@ export default class MeetingList extends Component {
     const { meeting } = this.props
     console.log(meeting.date)
     return (
-        <Content>
           <List>
             <ListItem avatar>
               <Left>
@@ -22,7 +21,6 @@ export default class MeetingList extends Component {
               </Right>
             </ListItem>
           </List>
-        </Content>
     )
   }
 }
