@@ -1,10 +1,23 @@
 import React, { Component } from 'react'
-import { Text } from 'native-base'
+import Meteor, { createContainer } from 'react-native-meteor'
+import { Container, Text } from 'native-base'
 
-export default class Agenda extends Component {
+
+class Agenda extends Component {
   render() {
+    console.log(this.props)
     return (
-      <Text>Agenda Page!</Text>
+    <Container>
+      <Text>Some here</Text>
+    </Container>
     )
   }
 }
+
+export default createContainer(() => {
+  return {
+    meetings: Meteor.collection('meetings').find({
+      creator: Meteor.userId()
+    })
+  }
+}, Agenda)
