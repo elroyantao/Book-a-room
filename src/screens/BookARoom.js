@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import { Text, Content } from 'native-base'
+import { Text } from 'native-base'
 
 export default class BookARoom extends Component {
   render() {
     return (
-      <Content>
-        <Text>Book A Meeting Page!</Text>
-      </Content>
+      <Text>Book A Meeting Page!</Text>
     )
   }
 }

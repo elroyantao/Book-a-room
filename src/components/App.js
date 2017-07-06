@@ -3,21 +3,25 @@ import {
   Container,
   Header,
   Body,
-  Title
+  Title,
+  Content
 } from 'native-base'
-import Meteor from 'react-native-meteor'
+import Meteor, { createContainer } from 'react-native-meteor'
 import Home from '../screens/Home'
 import BookARoom from '../screens/BookARoom'
 import Agenda from '../screens/Agenda'
 import Settings from '../screens/Settings'
+import Login from '../screens/Login'
 import NavMenu from './NavMenu'
 
 try {
   Meteor.connect('ws://127.0.0.1:3000/websocket')
+  console.log('SUCCESS')
 } catch (e) {
-  // TODO
+  console.log('ERROR', e)
 }
-export default class App extends Component {
+
+class App extends Component {
 
   constructor() {
     super()
@@ -40,37 +44,43 @@ export default class App extends Component {
 
   routeTo = (activeScreen) => {
     switch (activeScreen) {
+      case 'login':
+        break
       case 'home':
-      return <Home />
-      break
+        return <Home />
       case 'book':
-      return <BookARoom />
-      break
+        return <BookARoom />
       case 'agenda':
-      return <Agenda />
-      break
+        return <Agenda />
       case 'settings':
-      return <Settings />
-      break
+        return <Settings />
       default: break
     }
   }
 
   render() {
-    return (
+    return this.props.userId ?
       <Container>
         <Header>
           <Body>
             <Title>Book-A-Room</Title>
           </Body>
         </Header>
-        { this.routeTo(this.state.activeScreen) }
+        <Content>
+          { this.routeTo(this.state.activeScreen) }
+        </Content>
         <NavMenu
           activeTab={this.state.activeScreen}
           menuTabs={this.tabs}
           onPress={this.onPressHandler}
         />
       </Container>
-    )
+    : <Login/>
   }
 }
+
+export default createContainer(() => {
+  return {
+    userId: Meteor.userId()
+  }
+}, App)

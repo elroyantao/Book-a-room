@@ -48,13 +48,15 @@ export default class Login extends Component {
   }
 
   onSubmit = () => {
+    console.log('Logging in,', this.state)
     const isValid = this.validate(this.state.username.value, this.state.password.value)
     if (!isValid) return null
-    Meteor.loginWithPassword(this.state.username, this.state.password, (err) => {
+    console.log(isValid, 'Validity')
+    Meteor.loginWithPassword(this.state.username.value, this.state.password.value, (err) => {
       if (err) {
         return console.log(err)
       }
-
+      console.log('We\'re logged in!')
       // We're logged in
     })
   }
