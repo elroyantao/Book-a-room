@@ -87,7 +87,7 @@ export default class Login extends Component {
       <Container>
         <Header>
           <Body>
-            <Title>Login</Title>
+            <Title>Book-A-Room</Title>
           </Body>
         </Header>
         <Content padder>
@@ -103,6 +103,7 @@ export default class Login extends Component {
               <Label>Password</Label>
               <Input
                 type="password"
+                secureTextEntry
                 onChangeText={this.onChangePassword}
                 value={this.state.password.value}
               />

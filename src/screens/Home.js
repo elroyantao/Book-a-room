@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
 import { View } from 'native-base'
 import { Image, Text } from 'react-native'
+import Meteor, { createContainer } from 'react-native-meteor'
 
-export default class Home extends Component {
+class Home extends Component {
   render() {
     return (
       <View style={style.hero}>
         <Image source={require('../../assets/user_circle.png')} style={style.thumbnail} />
-        <Text style={style.welcome} >Hi Callum</Text>
+        <Text style={style.welcome} >{`Hi ${this.props.user.profile.first_name}`}</Text>
       </View>
     )
   }
 }
+
+export default createContainer(() => {
+  return {
+    user: Meteor.user()
+  }
+}, Home)
 
 const style = {
   hero: {
@@ -24,7 +31,7 @@ const style = {
   thumbnail: {
     width: 140,
     height: 140,
-    marginRight: 10
+    marginRight: 20
   },
   welcome: {
     display: 'flex',

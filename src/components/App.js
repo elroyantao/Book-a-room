@@ -3,8 +3,7 @@ import {
   Container,
   Header,
   Body,
-  Title,
-  Content
+  Title
 } from 'native-base'
 import Meteor, { createContainer } from 'react-native-meteor'
 import Home from '../screens/Home'
@@ -15,7 +14,8 @@ import Login from '../screens/Login'
 import NavMenu from './NavMenu'
 
 try {
-  Meteor.connect('ws://127.0.0.1:3000/websocket')
+  Meteor.connect('ws://192.168.0.21:3000/websocket')
+  // Meteor.connect('ws://127.0.0.1:3000/websocket')
   console.log('SUCCESS')
 } catch (e) {
   console.log('ERROR', e)
@@ -42,6 +42,12 @@ class App extends Component {
     })
   }
 
+  onLogoutHandler = () => {
+    this.setState({
+      activeScreen: 'login'
+    })
+  }
+
   routeTo = (activeScreen) => {
     switch (activeScreen) {
       case 'login':
@@ -53,7 +59,7 @@ class App extends Component {
       case 'agenda':
         return <Agenda />
       case 'settings':
-        return <Settings />
+        return <Settings onLogout={this.onLogoutHandler} />
       default: break
     }
   }
@@ -75,7 +81,7 @@ class App extends Component {
           onPress={this.onPressHandler}
         />
       </Container>
-    : <Login/>
+    : <Login />
   }
 }
 
