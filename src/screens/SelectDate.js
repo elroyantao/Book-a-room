@@ -6,7 +6,7 @@ const first = curr.getDate()
 
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
-export default class BookARoom extends Component {
+export default class SelectDate extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -19,7 +19,7 @@ export default class BookARoom extends Component {
     const d = new Date(date)
     const day = d.getDay()
     const dayName = daysOfWeek[d.getDay()]
-    return { day: d.getDate(), dayName, isworkdays: day !== 0 && day !== 6 }
+    return { day: d.getDate(), dayName, date: d, isworkdays: day !== 0 && day !== 6 }
   }
 
   // firstday = () => (new Date(curr.setDate(first))).toString()
@@ -29,6 +29,10 @@ export default class BookARoom extends Component {
       tmpArr.push(this.formatDate(new Date(curr.getTime()).setDate(first + i)))
     }
     return tmpArr
+  }
+
+  onSelectDate = (value) => {
+    this.props.onSelectDate(value.date)
   }
 
   render() {
@@ -41,7 +45,7 @@ export default class BookARoom extends Component {
             this.state.myDays.map((value) => {
               if (value.isworkdays) {
                 return (
-                  <ListItem key={`${value.day}`} icon>
+                  <ListItem key={`${value.day}`} icon onPress={() => this.onSelectDate(value)}>
                     <Left>
                       <Text>{`${value.day}`}</Text>
                     </Left>
@@ -51,6 +55,7 @@ export default class BookARoom extends Component {
                   </ListItem>
                 )
               }
+              return null
             })
           }
         </List>
