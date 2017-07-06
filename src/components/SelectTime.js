@@ -51,7 +51,11 @@ class SelectTime extends Component {
   }
 
   onSubmit = () => {
-    this.props.selectTimeslot(this.state.startTime, this.state.duration)
+    const timeslotsSelected = []
+    for (let i = 0; i <= this.state.duration; i++) {
+      timeslotsSelected.push(this.state.startTime + i)
+    }
+    this.props.selectTimeslot(timeslotsSelected)
   }
 
   render() {

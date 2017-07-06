@@ -39,7 +39,7 @@ export default class BookARoom extends Component {
 
   handleTimeSlot = (timeslots) => {
     this.setState({
-      timeslots: [timeslots]
+      timeslots: timeslots
     }, this.bookMyRoom)
   }
 
