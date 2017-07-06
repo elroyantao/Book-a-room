@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react'
 import Meteor from 'react-native-meteor'
 import {
@@ -13,6 +14,7 @@ import {
   Text,
   Button
 } from 'native-base'
+import { Modal, TouchableHighlight, View } from 'react-native'
 
 export default class Login extends Component {
   constructor() {
@@ -25,7 +27,8 @@ export default class Login extends Component {
       password: {
         value: '',
         error: false
-      }
+      },
+      modalVisible: false
     }
   }
 
@@ -54,11 +57,16 @@ export default class Login extends Component {
     console.log(isValid, 'Validity')
     Meteor.loginWithPassword(this.state.username.value, this.state.password.value, (err) => {
       if (err) {
-        return console.log(err)
+        console.log(err)
+        this.setModalVisible(true)
       }
       console.log('We\'re logged in!')
       // We're logged in
     })
+  }
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible })
   }
 
   validate = (username, password) => {
@@ -91,6 +99,21 @@ export default class Login extends Component {
           </Body>
         </Header>
         <Content padder>
+          <Modal
+            animationType={'slide'}
+            transparent={false}
+            visible={this.state.modalVisible}
+          >
+            <View style={{ marginTop: 22 }}>
+              <View>
+                <Text>Error on Login!</Text>
+                <TouchableHighlight onPress={() => { this.setModalVisible(!this.state.modalVisible) }}>
+                  <Text>Try Again !</Text>
+                </TouchableHighlight>
+
+              </View>
+            </View>
+          </Modal>
           <Form>
             <Item floatingLabel error={this.state.username.error}>
               <Label>Username</Label>

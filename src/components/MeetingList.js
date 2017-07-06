@@ -21,9 +21,9 @@ export default class MeetingList extends Component {
             { meeting.room === 3 && <Thumbnail source={room3} square /> }
           </Left>
           <Body>
-          <Text note>Room {meeting.room} - Floor {meeting.floor}</Text>
-          <Text>{meeting.description}</Text>
-          <Text note>{convertTimeSlotsToTime(meeting.timeslots)} </Text>
+            <Text note>Room {meeting.room} - Floor {meeting.floor}</Text>
+            <Text>{meeting.description}</Text>
+            <Text note>{convertTimeSlotsToTime(meeting.timeslots)}</Text>
           </Body>
           <Right>
             <Text note>({meeting.location})</Text>
