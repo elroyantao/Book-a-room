@@ -53,9 +53,10 @@ class App extends Component {
     })
   }
 
-  routeToScreen = (activeScreen) => {
+  routeToScreen = (activeScreen, activeTitle) => {
     this.setState({
-      activeScreen
+      activeScreen,
+      activeTitle
     })
   }
 

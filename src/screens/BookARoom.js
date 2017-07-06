@@ -59,7 +59,7 @@ export default class BookARoom extends Component {
         buttonText: 'Okay'
       })
     }
-    this.props.onFinished('agenda')
+    this.props.onFinished('agenda', 'My Meetings')
   }
 
   render() {
