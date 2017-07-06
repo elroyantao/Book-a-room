@@ -15,7 +15,7 @@ import Login from '../screens/Login'
 import NavMenu from './NavMenu'
 
 try {
-  Meteor.connect('ws://192.168.0.21:3000/websocket')
+  Meteor.connect('ws://bookaroom.eu.meteorapp.com/websocket')
   console.log('SUCCESS')
 } catch (e) {
   console.log('ERROR', e)
