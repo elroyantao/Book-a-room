@@ -6,6 +6,7 @@ import {
   Body,
   Title
 } from 'native-base'
+import { ScrollView } from 'react-native'
 import Meteor, { createContainer } from 'react-native-meteor'
 import Home from '../screens/Home'
 import BookARoom from '../screens/BookARoom'
@@ -42,6 +43,8 @@ class App extends Component {
       activeScreen: tab.name,
       activeTitle: tab.title
     })
+    console.log(this.refs)
+    this.refs.content.scrollTo({ x: 0, y: 0, animated: false })
   }
 
   onLogoutHandler = () => {
@@ -80,9 +83,11 @@ class App extends Component {
             <Title>{this.state.activeTitle.toUpperCase()}</Title>
           </Body>
         </Header>
+        <ScrollView ref="content">
         <Content style={style.wrapper}>
           { this.routeTo(this.state.activeScreen) }
         </Content>
+        </ScrollView>
         <NavMenu
           activeTab={this.state.activeScreen}
           menuTabs={this.tabs}
