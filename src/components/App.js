@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
   Container,
-  Content,
   Header,
   Body,
   Title,
