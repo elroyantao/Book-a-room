@@ -26,19 +26,21 @@ class App extends Component {
   constructor() {
     super()
     this.tabs = [
-      { name: 'home', icon: 'home' },
-      { name: 'book', icon: 'add' },
-      { name: 'agenda', icon: 'calendar' },
-      { name: 'settings', icon: 'person' }
+      { name: 'home', icon: 'home', title: 'Leave My Room!' },
+      { name: 'book', icon: 'add', title: 'New Meeting' },
+      { name: 'agenda', icon: 'calendar', title: 'My Meetings' },
+      { name: 'settings', icon: 'person', title: 'Settings' }
     ]
     this.state = {
-      activeScreen: 'home'
+      activeScreen: 'home',
+      activeTitle: 'Leave My Room!'
     }
   }
 
   onPressHandler = (tab) => {
     this.setState({
-      activeScreen: tab.name
+      activeScreen: tab.name,
+      activeTitle: tab.title
     })
   }
 
@@ -75,7 +77,7 @@ class App extends Component {
       <Container>
         <Header>
           <Body>
-            <Title>Book-A-Room</Title>
+            <Title>{this.state.activeTitle.toUpperCase()}</Title>
           </Body>
         </Header>
         <Content style={style.wrapper}>
