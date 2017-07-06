@@ -37,9 +37,9 @@ class Home extends Component {
           {
             meetingsReady &&
             <Card>
-              <CardItem>
+              <CardItem style={style.cardMessage}>
                 <Body>
-                  <Text>{message}</Text>
+                  <Text style={style.textMessage}>{message}</Text>
                 </Body>
               </CardItem>
             </Card>
@@ -71,5 +71,13 @@ const style = {
   welcome: {
     display: 'flex',
     fontSize: 40
+  },
+  cardMessage: {
+    backgroundColor: '#00B386'
+  },
+  textMessage: {
+    fontSize: 16,
+    color: '#fff',
+    fontWeight: 'bold'
   }
 }
