@@ -85,10 +85,10 @@ class App extends Component {
           </Body>
         </Header>
         <ScrollView ref="content">
-        <Content style={style.wrapper}>
-          { this.routeTo(this.state.activeScreen) }
-        </Content>
-        </ScrollView>
+          <Content style={style.wrapper}>
+            { this.routeTo(this.state.activeScreen) }
+          </Content>
+        </ ScrollView>
         <NavMenu
           activeTab={this.state.activeScreen}
           menuTabs={this.tabs}
