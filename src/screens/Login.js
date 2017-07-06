@@ -62,6 +62,7 @@ export default class Login extends Component {
       }
       console.log('We\'re logged in!')
       // We're logged in
+      this.props.onFinished('home', 'Leave My Room!')
     })
   }
 

@@ -49,7 +49,8 @@ class App extends Component {
 
   onLogoutHandler = () => {
     this.setState({
-      activeScreen: 'login'
+      activeScreen: 'login',
+      activeTitle: 'Login'
     })
   }
 
@@ -95,7 +96,7 @@ class App extends Component {
           onPress={this.onPressHandler}
         />
       </Container>
-    : <Login />
+    : <Login onFinished={this.routeToScreen} />
   }
 }
 
