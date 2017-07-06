@@ -5,12 +5,18 @@ import {
   Body,
   Title
 } from 'native-base'
+import Meteor from 'react-native-meteor'
 import Home from '../screens/Home'
 import BookARoom from '../screens/BookARoom'
 import Agenda from '../screens/Agenda'
 import Settings from '../screens/Settings'
 import NavMenu from './NavMenu'
 
+try {
+  Meteor.connect('ws://127.0.0.1:3000/websocket')
+} catch (e) {
+  // TODO
+}
 export default class App extends Component {
 
   constructor() {

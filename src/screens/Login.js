@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Meteor from 'react-native-meteor'
 import {
   Container,
   Content,
@@ -49,6 +50,13 @@ export default class Login extends Component {
   onSubmit = () => {
     const isValid = this.validate(this.state.username.value, this.state.password.value)
     if (!isValid) return null
+    Meteor.loginWithPassword(this.state.username, this.state.password, (err) => {
+      if (err) {
+        return console.log(err)
+      }
+
+      // We're logged in
+    })
   }
 
   validate = (username, password) => {
