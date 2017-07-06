@@ -3,8 +3,7 @@ import {
   Container,
   Header,
   Body,
-  Title,
-  Content
+  Title
 } from 'native-base'
 import Home from '../screens/Home'
 import BookARoom from '../screens/BookARoom'
@@ -59,9 +58,7 @@ export default class App extends Component {
             <Title>Book-A-Room</Title>
           </Body>
         </Header>
-        <Content>
-          { this.routeTo(this.state.activeScreen) }
-        </Content>
+        { this.routeTo(this.state.activeScreen) }
         <NavMenu
           activeTab={this.state.activeScreen}
           menuTabs={this.tabs}
