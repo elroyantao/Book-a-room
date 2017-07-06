@@ -4,8 +4,7 @@ import {
   Container,
   Header,
   Body,
-  Title,
-  Content
+  Title
 } from 'native-base'
 import Meteor, { createContainer } from 'react-native-meteor'
 import Home from '../screens/Home'
