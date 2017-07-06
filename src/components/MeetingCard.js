@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import { Image } from 'react-native'
 import { Card, CardItem, Text, Left, Body, Right } from 'native-base'
+import { convertTimeSlotsToTime } from '../util/timeHelper'
 
 export default class MeetingCard extends Component {
   render() {
+    const { description, floor, room, location, timeslots } = this.props.meeting
     return (
       <Card>
         <CardItem>
           <Left>
             <Body>
-              <Text>Stand Up</Text>
-              <Text note>Floor 7 - Room 1</Text>
+              <Text>{description}</Text>
+              <Text note>{`Floor ${floor} - Room ${room}`}</Text>
             </Body>
           </Left>
         </CardItem>
@@ -22,10 +24,10 @@ export default class MeetingCard extends Component {
         </CardItem>
         <CardItem>
           <Left>
-            <Text>MBH</Text>
+            <Text>{location}</Text>
           </Left>
           <Right>
-            <Text>11:00 AM</Text>
+            <Text note>{convertTimeSlotsToTime(timeslots)}</Text>
           </Right>
         </CardItem>
       </Card>

@@ -8,16 +8,17 @@ import {
   Right,
   Spinner
 } from 'native-base'
+import Meteor, { createContainer } from 'react-native-meteor'
 import { Image, Text } from 'react-native'
 import MeetingCard from '../components/MeetingCard'
-import Meteor, { createContainer } from 'react-native-meteor'
 
 class Home extends Component {
   render() {
     const { user, meetingsReady, meetings } = this.props
+    console.log(meetings)
     const message = meetings.length
-      ? `Today's meetings`
-      : `You have no meetings today!`
+      ? 'Today\'s meetings'
+      : 'You have no meetings today!'
 
     return (
       <Container>
