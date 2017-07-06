@@ -44,7 +44,7 @@ export default class BookARoom extends Component {
             selectedValue={this.state.selectedTime}
             onValueChange={this.onValueChange}
           >
-            {timeList.map((time) => <Item label={time} value={time} />)}
+            {timeList.map((time, index) => <Item label={time} value={index} />)}
           </Picker>
         </Form>
       </Container>
