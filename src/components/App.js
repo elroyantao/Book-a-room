@@ -6,6 +6,10 @@ import {
   Title,
   Content
 } from 'native-base'
+import Home from '../screens/Home'
+import BookARoom from '../screens/BookARoom'
+import Agenda from '../screens/Agenda'
+import Settings from '../screens/Settings'
 import NavMenu from './NavMenu'
 
 export default class App extends Component {
@@ -19,14 +23,32 @@ export default class App extends Component {
       { name: 'settings', icon: 'person' }
     ]
     this.state = {
-      activeScene: 'home'
+      activeScreen: 'home'
     }
   }
 
   onPressHandler = (tab) => {
     this.setState({
-      activeScene: tab.name
+      activeScreen: tab.name
     })
+  }
+
+  routeTo = (activeScreen) => {
+    switch (activeScreen) {
+      case 'home':
+      return <Home />
+      break
+      case 'book':
+      return <BookARoom />
+      break
+      case 'agenda':
+      return <Agenda />
+      break
+      case 'settings':
+      return <Settings />
+      break
+      default: break
+    }
   }
 
   render() {
@@ -37,9 +59,11 @@ export default class App extends Component {
             <Title>Book-A-Room</Title>
           </Body>
         </Header>
-        <Content />
+        <Content>
+          { this.routeTo(this.state.activeScreen) }
+        </Content>
         <NavMenu
-          activeTab={this.state.activeScene}
+          activeTab={this.state.activeScreen}
           menuTabs={this.tabs}
           onPress={this.onPressHandler}
         />
