@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React, { Component } from 'react'
 import {
   Container,
@@ -5,7 +6,7 @@ import {
   Card,
   CardItem,
   Body,
-  Right,
+  Left,
   Spinner
 } from 'native-base'
 import Meteor, { createContainer } from 'react-native-meteor'
@@ -25,12 +26,12 @@ class Home extends Component {
         <Content>
           <Card>
             <CardItem>
-              <Body>
+              <Left>
                 <Image source={require('../../assets/user_circle.png')} style={style.thumbnail} />
-              </Body>
-              <Right>
+              </Left>
+              <Body>
                 <Text style={style.welcome} >{`Hi ${user.profile.first_name}!`}</Text>
-              </Right>
+              </Body>
             </CardItem>
           </Card>
 
@@ -66,12 +67,12 @@ export default createContainer(() => {
 
 const style = {
   thumbnail: {
-    width: 140,
-    height: 140,
-    marginRight: 20
+    width: 70,
+    height: 70,
+    marginRight: 10
   },
   welcome: {
     display: 'flex',
-    fontSize: 40
+    fontSize: 30
   }
 }
