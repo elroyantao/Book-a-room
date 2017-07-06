@@ -1,33 +1,69 @@
 import React, { Component } from 'react'
-import { View } from 'native-base'
+import {
+  Container,
+  Content,
+  Card,
+  CardItem,
+  Body,
+  Right,
+  Spinner
+} from 'native-base'
 import { Image, Text } from 'react-native'
+import MeetingCard from '../components/MeetingCard'
 import Meteor, { createContainer } from 'react-native-meteor'
 
 class Home extends Component {
   render() {
+    const { user, meetingsReady, meetings } = this.props
+    const message = meetings.length
+      ? `Today's meetings`
+      : `You have no meetings today!`
+
     return (
-      <View style={style.hero}>
-        <Image source={require('../../assets/user_circle.png')} style={style.thumbnail} />
-        <Text style={style.welcome} >{`Hi ${this.props.user.profile.first_name}`}</Text>
-      </View>
+      <Container>
+        <Content>
+          <Card>
+            <CardItem>
+              <Body>
+                <Image source={require('../../assets/user_circle.png')} style={style.thumbnail} />
+              </Body>
+              <Right>
+                <Text style={style.welcome} >{`Hi ${user.profile.first_name}!`}</Text>
+              </Right>
+            </CardItem>
+          </Card>
+
+          { !meetingsReady && <Spinner /> }
+          {
+            meetingsReady &&
+            <Card>
+              <CardItem>
+                <Body>
+                  <Text>{message}</Text>
+                </Body>
+              </CardItem>
+            </Card>
+          }
+          {
+            meetings.map((meeting, i) => <MeetingCard meeting={meeting} key={i} />)
+          }
+        </Content>
+      </Container>
     )
   }
 }
 
 export default createContainer(() => {
+  const subhandler = Meteor.subscribe('dayMeetings')
+
   return {
-    user: Meteor.user()
+    user: Meteor.user(),
+    meetingsReady: subhandler.ready(),
+    meetings: Meteor.collection('meetings').find()
   }
 }, Home)
 
 const style = {
-  hero: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20
-  },
   thumbnail: {
     width: 140,
     height: 140,

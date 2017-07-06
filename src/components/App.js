@@ -72,7 +72,7 @@ class App extends Component {
             <Title>Book-A-Room</Title>
           </Body>
         </Header>
-        <Content>
+        <Content style={style.wrapper}>
           { this.routeTo(this.state.activeScreen) }
         </Content>
         <NavMenu
@@ -90,3 +90,10 @@ export default createContainer(() => {
     userId: Meteor.userId()
   }
 }, App)
+
+const style = {
+  wrapper: {
+    marginLeft: 20,
+    marginRight: 20
+  }
+}
