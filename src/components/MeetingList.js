@@ -1,5 +1,6 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react'
-import { List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base'
+import { ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base'
 import { convertTimeSlotsToTime } from '../util/timeHelper'
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
@@ -14,23 +15,21 @@ export default class MeetingList extends Component {
     const { meeting } = this.props
     console.log(meeting.date)
     return (
-      <List style={style.list}>
-        <ListItem avatar>
-          <Left>
-            { meeting.room === 1 && <Thumbnail source={room1} square /> }
-            { meeting.room === 2 && <Thumbnail source={room2} square /> }
-            { meeting.room === 3 && <Thumbnail source={room3} square /> }
-          </Left>
-          <Body>
-            <Text note>Room {meeting.room} - Floor {meeting.floor}</Text>
-            <Text>{meeting.description}</Text>
-            <Text note>{convertTimeSlotsToTime(meeting.timeslots)} ({daysOfWeek[new Date(meeting.date).getDay()]})</Text>
-          </Body>
-          <Right>
-            <Text note>({meeting.location})</Text>
-          </Right>
-        </ListItem>
-      </List>
+      <ListItem avatar style={style.list}>
+        <Left>
+          { meeting.room === 1 && <Thumbnail source={room1} square /> }
+          { meeting.room === 2 && <Thumbnail source={room2} square /> }
+          { meeting.room === 3 && <Thumbnail source={room3} square /> }
+        </Left>
+        <Body>
+          <Text note>Room {meeting.room} - Floor {meeting.floor}</Text>
+          <Text>{meeting.description}</Text>
+          <Text note>{convertTimeSlotsToTime(meeting.timeslots)} ({daysOfWeek[new Date(meeting.date).getDay()]})</Text>
+        </Body>
+        <Right>
+          <Text note>({meeting.location})</Text>
+        </Right>
+      </ListItem>
     )
   }
 }
