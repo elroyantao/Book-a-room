@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Picker, Text, H2, Button } from 'native-base'
+import { Container, Picker, Text, H2, Button, Input, Item as FormItem } from 'native-base'
 import Meteor, { createContainer } from 'react-native-meteor'
 import { timeList } from '../util/timeHelper'
 
@@ -18,7 +18,8 @@ class SelectTime extends Component {
     super(props)
     this.state = {
       startTime: null,
-      duration: null
+      duration: null,
+      description: ''
     }
   }
 
@@ -39,11 +40,15 @@ class SelectTime extends Component {
     for (let i = 0; i <= this.state.duration; i++) {
       timeslotsSelected.push(this.state.startTime + i)
     }
-    this.props.selectTimeslot(timeslotsSelected)
+    this.props.selectTimeslot(timeslotsSelected, this.state.description)
+  }
+
+  handleChangeDescription = (description) => {
+    this.setState({ description })
   }
 
   findAvailableSlots = () => {
-    const { location, date, floor, room } = this.props
+    const { location, floor, room } = this.props
     const alreadyBookedTimesSlots = this.props.meetings.reduce((times, meetings) => {
       return location === meetings.location &&
         floor === meetings.floor &&
@@ -51,7 +56,6 @@ class SelectTime extends Component {
         times.concat(meetings.timeslots) :
         []
     }, [])
-    console.log('booked', alreadyBookedTimesSlots);
     return Object.keys(timeList).filter((timeIds) => {
       return !alreadyBookedTimesSlots.includes(parseInt(timeIds, 10))
     }).map((timeIds) => ({
@@ -61,7 +65,7 @@ class SelectTime extends Component {
   }
 
   findAvailableDurations = (availableTime) => {
-    if (!this.state.startTime || !availableTime || !availableTime.length) return null
+    if (this.state.startTime === null || !availableTime || !availableTime.length) return null
     const timeslots = availableTime.map((time) => time.value)
     const availableDurations = []
     for (let i = 0; i < duration.length; i++) {
@@ -69,21 +73,23 @@ class SelectTime extends Component {
         availableDurations.push(i)
       } else break
     }
-    return availableDurations.map((index) => duration[index] )
+    return availableDurations.map((index) => duration[index])
   }
 
   render() {
     const availableTime = this.findAvailableSlots()
     const availableDurations = this.findAvailableDurations(availableTime)
 
-    if (!availableTime.length) return (
-      <Container>
-        <Text> Room fully booked </Text>
-        <Button onPress={this.props.goBack}>
-          <Text>Select anotherRoom</Text>
-        </Button>
-      </Container>
-    )
+    if (!availableTime.length) {
+      return (
+        <Container>
+          <Text> Room fully booked </Text>
+          <Button onPress={this.props.goBack}>
+            <Text>Select anotherRoom</Text>
+          </Button>
+        </Container>
+      )
+    }
     return (
       <Container>
         <H2>Select Room</H2>
@@ -116,6 +122,14 @@ class SelectTime extends Component {
             )
           })}
         </Picker>
+        <Text>Enter meeting topic</Text>
+        <FormItem>
+          <Input
+            placeholder="ender topic here ..."
+            onChangeText={this.handleChangeDescription}
+            value={this.state.description}
+          />
+        </FormItem>
         <Button block primary onPress={this.onSubmit}>
           <Text> Book room </Text>
         </Button>
@@ -131,7 +145,3 @@ export default createContainer(({ date }) => {
     meetings: Meteor.collection('meetings').find()
   }
 }, SelectTime)
-
-const style = {
-
-}

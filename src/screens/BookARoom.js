@@ -37,9 +37,10 @@ export default class BookARoom extends Component {
     })
   }
 
-  handleTimeSlot = (timeslots) => {
+  handleTimeSlot = (timeslots, description) => {
     this.setState({
-      timeslots: timeslots
+      timeslots,
+      description
     }, this.bookMyRoom)
   }
 
