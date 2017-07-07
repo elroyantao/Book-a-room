@@ -80,7 +80,7 @@ class App extends Component {
 
   render() {
     console.log('Connected', this.props.connected)
-    if (!this.props.connected) {
+    if (!this.props.connected || this.props.loggingIn) {
       return <SplashScreen />
     }
     return this.props.userId ?
@@ -107,6 +107,7 @@ class App extends Component {
 
 export default createContainer(() => ({
   connected: Meteor.status().connected,
+  loggingIn: Meteor.loggingIn(),
   userId: Meteor.userId()
 }), App)
 
