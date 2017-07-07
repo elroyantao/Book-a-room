@@ -107,7 +107,7 @@ class SelectTime extends Component {
             )
           })}
         </Picker>
-        <Text>Select your meeting time</Text>
+        <Text>Select length of your meeting</Text>
         <Picker
           disabled
           iosHeader="Select one"
@@ -125,7 +125,7 @@ class SelectTime extends Component {
         <Text>Enter meeting topic</Text>
         <FormItem>
           <Input
-            placeholder="ender topic here ..."
+            placeholder="enter topic here ..."
             onChangeText={this.handleChangeDescription}
             value={this.state.description}
           />

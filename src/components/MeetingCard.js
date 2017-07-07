@@ -3,6 +3,12 @@ import { Image } from 'react-native'
 import { Card, CardItem, Text, Left, Body, Right } from 'native-base'
 import { convertTimeSlotsToTime } from '../util/timeHelper'
 
+const roomImgs = [
+  require('../../assets/room1.jpg'),
+  require('../../assets/room2.jpg'),
+  require('../../assets/room3.jpg')
+]
+
 export default class MeetingCard extends Component {
   render() {
     const { description, floor, room, location, timeslots } = this.props.meeting
@@ -18,7 +24,7 @@ export default class MeetingCard extends Component {
         </CardItem>
         <CardItem cardBody>
           <Image
-            source={require('../../assets/room1.jpg')}
+            source={roomImgs[room - 1]}
             style={style.room}
           />
         </CardItem>
