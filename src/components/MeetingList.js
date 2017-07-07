@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base'
 import { convertTimeSlotsToTime } from '../util/timeHelper'
+const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 const room1 = require('../../assets/room1.jpg')
 const room2 = require('../../assets/room2.jpg')
@@ -23,7 +24,7 @@ export default class MeetingList extends Component {
           <Body>
             <Text note>Room {meeting.room} - Floor {meeting.floor}</Text>
             <Text>{meeting.description}</Text>
-            <Text note>{convertTimeSlotsToTime(meeting.timeslots)}</Text>
+            <Text note>{convertTimeSlotsToTime(meeting.timeslots)} ({daysOfWeek[new Date(meeting.date).getDay()]})</Text>
           </Body>
           <Right>
             <Text note>({meeting.location})</Text>
