@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, Container, List, ListItem, H2, Left, Body } from 'native-base'
+import { Text, Container, List, ListItem, H3, Left, Body } from 'native-base'
 
 const allRooms = [1, 2, 3]
 
@@ -15,7 +15,7 @@ export default class SelectRoom extends Component {
   render() {
     return (
       <Container style={style.body}>
-        <H2>Select Room</H2>
+        <H3 style={style.head}>Select Room</H3>
         <List>
           {allRooms.map((room) => {
             return (
@@ -37,5 +37,9 @@ const style = {
   body: {
     marginLeft: 10,
     marginRight: 10
+  },
+  head: {
+    marginTop: 10,
+    marginBottom: 20
   }
 }

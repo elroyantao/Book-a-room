@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, Container, List, ListItem, H2, Left, Body } from 'native-base'
+import { Text, Container, List, ListItem, H3, Left, Body } from 'native-base'
 
 const curr = new Date()
 const first = curr.getDate()
@@ -38,7 +38,7 @@ export default class SelectDate extends Component {
   render() {
     return (
       <Container style={style.body}>
-        <H2>Select Day</H2>
+        <H3 style={style.head}>Select Day</H3>
         <List>
           {
             this.state.myDays.map((value) => {
@@ -67,5 +67,9 @@ const style = {
   body: {
     marginLeft: 10,
     marginRight: 10
+  },
+  head: {
+    marginTop: 10,
+    marginBottom: 20
   }
 }
