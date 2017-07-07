@@ -46,7 +46,6 @@ export default class BookARoom extends Component {
 
   bookMyRoom = () => {
     const { location, date, timeslots, room, floor, description } = this.state
-    console.log( location, date, timeslots, room, floor, description )
     Meteor.call('addMeeting', {
       location, date, timeslots, room, floor, description
     }, this.onCreateBooking)

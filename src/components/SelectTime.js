@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Picker, Text, H2, Button, Input, Item as FormItem } from 'native-base'
+import { Content, Container, Picker, Text, H3, Button, Input, Item as FormItem, Card, CardItem } from 'native-base'
 import Meteor, { createContainer } from 'react-native-meteor'
 import { timeList } from '../util/timeHelper'
 
@@ -82,58 +82,60 @@ class SelectTime extends Component {
 
     if (!availableTime.length) {
       return (
-        <Container>
-          <Text> Room fully booked </Text>
+        <Content>
+          <Text> Sorry this meeting room is fully booked, Please select another room </Text>
           <Button onPress={this.props.goBack}>
-            <Text>Select anotherRoom</Text>
+            <Text>Choose another room</Text>
           </Button>
-        </Container>
+        </Content>
       )
     }
     return (
-      <Container>
-        <H2>Select Room</H2>
-        <Text>Select your meeting time</Text>
-        <Picker
-          iosHeader="Select one"
-          mode="dropdown"
-          placeholder="select your time"
-          selectedValue={this.state.startTime}
-          onValueChange={this.onStartTimeChange.bind(this)}
-        >
-          {availableTime.map((time, index) => {
-            return (
-              <Item label={time.label} value={time.value} key={index} />
-            )
-          })}
-        </Picker>
-        <Text>Select length of your meeting</Text>
-        <Picker
-          disabled
-          iosHeader="Select one"
-          placeholder="select duration of your meeting"
-          mode="dropdown"
-          selectedValue={this.state.duration}
-          onValueChange={this.onDurationChange.bind(this)}
-        >
-          {availableDurations && availableDurations.map((dur, index) => {
-            return (
-              <Item label={dur} value={index} key={index} />
-            )
-          })}
-        </Picker>
-        <Text>Enter meeting topic</Text>
-        <FormItem>
-          <Input
-            placeholder="enter topic here ..."
-            onChangeText={this.handleChangeDescription}
-            value={this.state.description}
-          />
-        </FormItem>
-        <Button block primary onPress={this.onSubmit}>
-          <Text> Book room </Text>
-        </Button>
-      </Container>
+      <Content>
+        <H3 style={style.head}>Enter meeting details</H3>
+          <Text>Meeting Start</Text>
+          <Picker
+            iosHeader="Select one"
+            mode="dropdown"
+            placeholder="please select the start time"
+            selectedValue={this.state.startTime}
+            onValueChange={this.onStartTimeChange.bind(this)}
+            style={style.spacer}
+          >
+            {availableTime.map((time, index) => {
+              return (
+                <Item label={time.label} value={time.value} key={index} />
+              )
+            })}
+          </Picker>
+          <Text>Meeting duration</Text>
+          <Picker
+            disabled
+            iosHeader="Select one"
+            placeholder="please select the meeting duration"
+            mode="dropdown"
+            selectedValue={this.state.duration}
+            onValueChange={this.onDurationChange.bind(this)}
+            style={style.spacer}
+          >
+            {availableDurations && availableDurations.map((dur, index) => {
+              return (
+                <Item label={dur} value={index} key={index} />
+              )
+            })}
+          </Picker>
+          <Text>Meeting topic</Text>
+          <FormItem style={style.spacer}>
+            <Input
+              placeholder="please enter topic here..."
+              onChangeText={this.handleChangeDescription}
+              value={this.state.description}
+            />
+          </FormItem>
+          <Button block primary onPress={this.onSubmit}>
+            <Text> Book room </Text>
+          </Button>
+      </Content>
     )
   }
 }
@@ -145,3 +147,14 @@ export default createContainer(({ date }) => {
     meetings: Meteor.collection('meetings').find()
   }
 }, SelectTime)
+
+
+const style = {
+  head: {
+    marginTop: 10,
+    marginBottom: 20
+  },
+  spacer: {
+    marginBottom: 20
+  }
+}
