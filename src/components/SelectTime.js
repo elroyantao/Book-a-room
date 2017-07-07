@@ -110,7 +110,6 @@ class SelectTime extends Component {
           </Picker>
           <Text>Meeting duration</Text>
           <Picker
-            disabled
             iosHeader="Select one"
             placeholder="please select the meeting duration"
             mode="dropdown"
