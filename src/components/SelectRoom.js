@@ -14,7 +14,7 @@ export default class SelectRoom extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={style.body}>
         <H2>Select Room</H2>
         <List>
           {allRooms.map((room) => {
@@ -30,5 +30,12 @@ export default class SelectRoom extends Component {
         </List>
       </Container>
     )
+  }
+}
+
+const style = {
+  body: {
+    marginLeft: 10,
+    marginRight: 10
   }
 }

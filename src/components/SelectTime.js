@@ -82,7 +82,7 @@ class SelectTime extends Component {
 
     if (!availableTime.length) {
       return (
-        <Content>
+        <Content style={style.body}>
           <Text> Sorry this meeting room is fully booked, Please select another room </Text>
           <Button onPress={this.props.goBack}>
             <Text>Choose another room</Text>
@@ -91,7 +91,7 @@ class SelectTime extends Component {
       )
     }
     return (
-      <Content>
+      <Content style={style.body}>
         <H3 style={style.head}>Enter meeting details</H3>
           <Text>Meeting Start</Text>
           <Picker
@@ -156,5 +156,10 @@ const style = {
   },
   spacer: {
     marginBottom: 20
+  },
+  body: {
+    marginLeft: 10,
+    marginRight: 10
   }
+
 }

@@ -105,6 +105,6 @@ export default class BookARoom extends Component {
         />
       )
     }
-    return <Text> done</Text>
+    return null
   }
 }

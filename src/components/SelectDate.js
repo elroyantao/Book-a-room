@@ -37,7 +37,7 @@ export default class SelectDate extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={style.body}>
         <H2>Select Day</H2>
         <List>
           {
@@ -60,5 +60,12 @@ export default class SelectDate extends Component {
         </List>
       </Container>
     )
+  }
+}
+
+const style = {
+  body: {
+    marginLeft: 10,
+    marginRight: 10
   }
 }

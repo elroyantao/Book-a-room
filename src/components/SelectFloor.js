@@ -14,7 +14,7 @@ export default class SelectFloor extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={style.body}>
         <H2>Select Floor</H2>
         <List>
           {allFloors.map((floor) => {
@@ -30,5 +30,12 @@ export default class SelectFloor extends Component {
         </List>
       </Container>
     )
+  }
+}
+
+const style = {
+  body: {
+    marginLeft: 10,
+    marginRight: 10
   }
 }
