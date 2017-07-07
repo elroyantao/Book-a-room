@@ -104,12 +104,13 @@ export default class Login extends Component {
             animationType={'slide'}
             transparent={false}
             visible={this.state.modalVisible}
+            onRequestClose={() => this.setModalVisible(false)}
           >
             <View style={{ marginTop: 22 }}>
               <View>
                 <Text>Error on Login!</Text>
                 <TouchableHighlight onPress={() => { this.setModalVisible(!this.state.modalVisible) }}>
-                  <Text>Try Again !</Text>
+                  <Text>Please try again</Text>
                 </TouchableHighlight>
 
               </View>
