@@ -105,16 +105,14 @@ class App extends Component {
   }
 }
 
-export default createContainer(() => {
-  return {
-    connected: Meteor.status().connected,
-    userId: Meteor.userId()
-  }
-}, App)
+export default createContainer(() => ({
+  connected: Meteor.status().connected,
+  userId: Meteor.userId()
+}), App)
 
 const style = {
   wrapper: {
-    marginLeft: 20,
-    marginRight: 20
+    marginLeft: 5,
+    marginRight: 5
   }
 }
