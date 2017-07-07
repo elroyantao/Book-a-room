@@ -13,6 +13,7 @@ import BookARoom from '../screens/BookARoom'
 import Agenda from '../screens/Agenda'
 import Settings from '../screens/Settings'
 import Login from '../screens/Login'
+import SplashScreen from '../screens/SplashScreen'
 import NavMenu from './NavMenu'
 
 try {
@@ -78,6 +79,10 @@ class App extends Component {
   }
 
   render() {
+    console.log('Connected', this.props.connected)
+    if (!this.props.connected) {
+      return <SplashScreen />
+    }
     return this.props.userId ?
       <Container>
         <Header>
@@ -102,6 +107,7 @@ class App extends Component {
 
 export default createContainer(() => {
   return {
+    connected: Meteor.status().connected,
     userId: Meteor.userId()
   }
 }, App)
