@@ -22,8 +22,6 @@ export default createContainer(() => {
   const handler = Meteor.subscribe('meetings')
   return {
     meetingsReady: handler.ready(),
-    meetings: Meteor.collection('meetings').find({
-      creator: Meteor.userId()
-    })
+    meetings: Meteor.collection('meetings').find()
   }
 }, Agenda)

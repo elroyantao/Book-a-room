@@ -59,7 +59,9 @@ export default createContainer(() => {
   return {
     user: Meteor.user(),
     meetingsReady: subhandler.ready(),
-    meetings: Meteor.collection('meetings').find()
+    meetings: Meteor.collection('meetings').find({
+      creator: Meteor.userId()
+    })
   }
 }, Home)
 

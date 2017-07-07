@@ -30,7 +30,7 @@ class App extends Component {
     this.tabs = [
       { name: 'home', icon: 'home', title: 'Leave My Room!' },
       { name: 'book', icon: 'add', title: 'New Meeting' },
-      { name: 'agenda', icon: 'calendar', title: 'My Meetings' },
+      { name: 'agenda', icon: 'calendar', title: 'Agenda' },
       { name: 'settings', icon: 'person', title: 'Settings' }
     ]
     this.state = {
